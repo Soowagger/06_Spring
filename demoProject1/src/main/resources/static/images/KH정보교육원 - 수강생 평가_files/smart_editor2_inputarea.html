@@ -1,0 +1,7 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0067)https://kh-academy.co.kr/resources/se2/smart_editor2_inputarea.html -->
+<html lang="ko"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Smart Editor™ WYSIWYG Mode</title>
+<link type="text/css" rel="stylesheet" href="./smart_editor2_in.css"></head>
+<body class="se2_inputarea" style="height: 330px;" contenteditable="true"><p></p><p>원인 1 : 스캐너를 이용해 입력 받은 값을 정수가 아닌 문자열로 초기화하였다.</p><p>ㅈ</p><p><br></p><p>원인 2 : if 조건식이 잘못 설정되어 있다.</p><p></p><p>조치내용 : if(input &gt;= 2 &amp;&amp; input &lt;= 9)&nbsp;</p><p><br></p><p><br></p><p>원인 3 : for문 안에 printf 구문이 잘못 설정되어 있다.</p><p>조치내용 : System.out.printf("%d * %d = %d\n, input, num, input * num)</p><p><br></p><p>원인 4 :&nbsp;while문의 조건식이 true로 되어 있으나 종료할 수 있는 조건이 없다.​</p><p>조치내용 : 구구단이 올바르게 실행된 후 종료될 수 있도록 for문 종료 후 break를 추가해준다.</p><p></p><p><br></p><p>if(input &gt;= 2 &amp;&amp; input &lt;= 9​) {</p><p style="margin-left: 40px;">for(int num = 1; num &lt;=9; num++) {</p><p style="margin-left: 80px;">System.out.printf("%d * %d = %d\n, input, num, input * num)​</p><p style="margin-left: 80px;"></p><p style="margin-left: 40px;">}</p><p style="margin-left: 40px;">break;​</p><p>}&nbsp;</p><p><br></p><p></p><p></p></body></html>
