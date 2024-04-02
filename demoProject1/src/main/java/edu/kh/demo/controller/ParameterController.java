@@ -1,11 +1,17 @@
 package edu.kh.demo.controller;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.kh.demo.model.dto.MemberDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 
@@ -90,13 +96,72 @@ public class ParameterController {
 	public String paramTest2(@RequestParam("title") String title, 
 							@RequestParam("writer") String writer,
 							@RequestParam("price") int price,
-							@RequestParam(value="publisher", required=false, defaultValue="ABC출판사") String publisher
-							) {
+							@RequestParam(value="publisher", required=false, 
+							defaultValue="ABC출판사") String publisher) {
 		
 		log.debug("title : " + title);
 		log.debug("writer : " + writer);
 		log.debug("price : " + price);
 		log.debug("publisher : " + publisher);
+		
+		return "redirect:/param/main";
+	}
+	
+	/* 3. @RequestParam 여러개 파라미터 
+	 * 
+	 * String[]
+	 * List<자료형>
+	 * Map<String, Object>
+	 *
+	 */
+	
+	@PostMapping("test3")
+	public String paramTest3(
+			@RequestParam(value="color", required=false) String[] colorArr,
+			@RequestParam(value="fruit", required=false) List<String> fruitList, 
+			@RequestParam Map<String, Object> paramMap) {
+		
+		log.debug("colorArr : " + Arrays.toString(colorArr));
+		log.debug("fruitList : " + fruitList);
+		
+		// @RequstParam Map<String, Object>
+		// -> 제출된 모든 파라미터가 Map에 저장된다.
+		// --> 단, key(name속성값)이 중복되면, 처음들어온 값 하나만 저장된다.
+		// ---> 같은 name속성 파라미터 String[], List로 저장 X
+		
+		
+		
+		log.debug("paramMap : " + paramMap);
+		
+		return "redirect:/param/main";
+	}
+	
+	
+	
+	/* 4. @ModelAttribute를 이용한 파라미터 얻어오기 */
+	
+	// @ModelAtrribute
+	// - DTO(또는 VO)와 같이 사용하는 어노테이션
+	
+	// 전달받은 파라미터의 name 속성값이
+	// 같이 사용되는 DTO의 필드명과 같으면
+	// 자동으로 setter를 호출해서 필드에 값을 세팅	
+	
+	
+	// *** @ModelAttribute를 이용해 값이 필드에 세팅된 객체를
+	// "커맨드 객체"라고 부른다 ***
+	
+	// *** @ModelAttribute 사용 시 주의사항 ***
+	// - DTO에 기본생성자, setter가 필수로 존재해야 한!
+	
+	// *** @ModelAttribute 어노테이션은 생략이 가능하다 ***
+	
+	@PostMapping("test4")
+	public String paramTest4(/*@ModelAttribute*/ MemberDTO inputMember) {
+		
+		log.debug("inputMember : " + inputMember.toString() );
+		
+		
 		
 		return "redirect:/param/main";
 	}
