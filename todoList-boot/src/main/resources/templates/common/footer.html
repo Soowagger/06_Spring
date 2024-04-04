@@ -1,0 +1,14 @@
+<!-- 스크립트 태그의 경우 바디 태그 하단에 작성하기 때문에 footer-->
+
+<!-- message 값 alert 띄워줄 script 작성 -->
+<script th:inline="javascript">
+    
+    const message = /*[[${message}]]*/ "전달받은 메세지";
+                    // th:inline="javascript" 
+                    // 전달받은 message가 없으면 null
+
+    if(message != null) {
+        alert(message);
+    }
+
+</script>
