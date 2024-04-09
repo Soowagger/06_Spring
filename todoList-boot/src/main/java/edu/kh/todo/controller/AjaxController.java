@@ -135,19 +135,34 @@ public class AjaxController {
 		
 	}
 	
+	
+	// Delete, Put 방식 요청 처리(비동기 요청만 가능!) - REST API(Ajax)
+	
 	@ResponseBody
-	@DeleteMapping("delete") // Delete, Put 방식 요청 처리(비동기 요청만 가능!) - REST API(Ajax)
+	@DeleteMapping("delete") 
 	// REST API = RESTFUL 자원 중심
 	public int todoDelete(@RequestBody int todoNo) {
 		
 		return service.todoDelete(todoNo);
 	}
 	
+	
+	// 완료 여부 변경
 	@ResponseBody
 	@PutMapping("changeComplete")
 	public int changeComplete(@RequestBody Todo todo) {
 		
 		return service.changeComplete(todo);
 	}
+	
+	
+	// 할 일 수정
+	@ResponseBody
+	@PutMapping("update")
+	public int todoUpdate(@RequestBody Todo todo) {
+			
+		return service.todoUpdate(todo);
+	}
 }
+
 
