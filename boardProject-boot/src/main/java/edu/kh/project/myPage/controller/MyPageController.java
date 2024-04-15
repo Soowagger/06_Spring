@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.project.member.model.dto.Member;
@@ -164,6 +165,45 @@ public class MyPageController {
 		} else {
 			path = "/myPage/changePw";
 			message = "현재 비밀번호가 일치하지 않습니다.";
+			
+		}
+		
+		ra.addFlashAttribute("message", message);
+		
+		return "redirect:" + path;
+	}
+	
+	/** 회원 탈퇴
+	 * @param memberPw : 입력 받은 비밀번호
+	 * @param loginMember : 로그인한 회원 정보(세션)
+	 * @param status : 세션 완료 용도의 객체
+	 * 				-> @SessionAttributes 로 등록된 세션을 완료
+	 * @param ra
+	 * @return
+	 */
+	@PostMapping("secession")
+	public String secession(@RequestParam("memberPw") String memberPw,
+							@SessionAttribute("loginMember") Member loginMember,
+							SessionStatus status,
+							RedirectAttributes ra) {
+		
+		// 서비스 호출
+		int memberNo = loginMember.getMemberNo();
+		
+		int result = service.secession(memberPw, memberNo);
+		
+		String message = null;
+		String path = null;
+		
+		if(result > 0) {
+			message = "탈퇴되었습니다.";
+			path = "/";
+			
+			status.setComplete(); // 세션 완료시킴
+			
+		} else {
+			message = "비밀번호가 일치하지 않습니다.";
+			path = "secession";
 			
 		}
 		

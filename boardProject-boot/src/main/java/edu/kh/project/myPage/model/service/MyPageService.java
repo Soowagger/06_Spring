@@ -19,5 +19,12 @@ public interface MyPageService {
 	 * @return result
 	 */
 	int changePw(Map<String, Object> paramMap, int memberNo);
+
+	/** 회원 탈퇴
+	 * @param memberPw
+	 * @param memberNo
+	 * @return result
+	 */
+	int secession(String memberPw, int memberNo);
 	
 }
