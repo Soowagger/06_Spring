@@ -198,6 +198,12 @@ public class MemberController {
 		return "redirect:" + path;
 	}
 	
+	/** 빠른 로그인
+	 * @param memberEmail
+	 * @param model
+	 * @param ra
+	 * @return
+	 */
 	@GetMapping("quickLogin")
 	public String quickLogin(
 				@RequestParam("memberEmail") String memberEmail,
@@ -218,6 +224,9 @@ public class MemberController {
 	
 	}
 	
+	/** 비동기 회원 목록 조회
+	 * @return
+	 */
 	@ResponseBody
 	@GetMapping("selectMemberList")
 	public List<Member> selectMemberList() {
@@ -229,6 +238,10 @@ public class MemberController {
 		return service.selectMemberList();
 	}
 	
+	/** 비동기 비밀번호 초기화
+	 * @param inputNo
+	 * @return
+	 */
 	@ResponseBody
 	@PutMapping("resetPw")
 	public int resetPw(@RequestBody int inputNo) {
