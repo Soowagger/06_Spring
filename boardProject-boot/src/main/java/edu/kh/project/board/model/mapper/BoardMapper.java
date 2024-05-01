@@ -8,6 +8,9 @@ import org.apache.ibatis.session.RowBounds;
 
 import edu.kh.project.board.model.dto.Board;
 
+/**
+ * 
+ */
 @Mapper
 public interface BoardMapper {
 
@@ -64,5 +67,19 @@ public interface BoardMapper {
 	 * @return
 	 */
 	int selectReadCount(int boardNo);
+	
+	
+	/** 검색 조건이 맞는 게시글 수 조회
+	 * @param paramMap
+	 * @return count
+	 */
+	int getSearchCount(Map<String, Object> paramMap);
+
+	/** 검색 결과 목록 조회
+	 * @param paramMap
+	 * @param rowBounds
+	 * @return boardList
+	 */
+	List<Board> selectSearchList(Map<String, Object> paramMap, RowBounds rowBounds);
 
 }
