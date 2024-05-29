@@ -220,6 +220,8 @@ public class BoardController {
 			model.addAttribute("board", board);
 			
 			
+			log.info("imageList" + board.getImageList());
+			
 			// 조회된 이미지 목록(imageList)가 있을 경우
 			if( !board.getImageList().isEmpty() ) {
 				

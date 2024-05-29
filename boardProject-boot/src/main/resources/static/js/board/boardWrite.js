@@ -96,7 +96,6 @@ const changeImageFn = (inputImage, order) => {
     backupInputList[order] = inputImage.cloneNode(true);
   });
 
-}
 
 
 
@@ -121,6 +120,7 @@ for(let i=0 ; i<inputImageList.length ; i++){
   });
 
 }
+
 
 
 // 작성 폼 유효성 검사

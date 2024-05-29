@@ -34,8 +34,8 @@
 				DEFAULT, DEFAULT, DEFAULT, DEFAULT,
 				#{boardCode},
 				#{memberNo}
-				)		
-	</insert>
+						)		
+		</insert>
 	
 
 

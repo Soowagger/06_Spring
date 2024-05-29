@@ -21,11 +21,13 @@ import edu.kh.project.board.model.exception.ImageUpdateException;
 import edu.kh.project.board.model.mapper.EditBoardMapper;
 import edu.kh.project.common.util.Utility;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @Transactional(rollbackFor = Exception.class)
 @RequiredArgsConstructor
 @PropertySource("classpath:/config.properties")
+@Slf4j
 public class EditBoardServiceImpl implements EditBoardService {
 	
 	private final EditBoardMapper mapper;
@@ -94,6 +96,10 @@ public class EditBoardServiceImpl implements EditBoardService {
 				
 			}
 		}
+		
+		
+		
+		log.info("uploadList" + uploadList);
 		
 		// 선택한 파일이 없을 경우
 		if(uploadList.isEmpty()) {
